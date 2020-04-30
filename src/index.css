@@ -1,4 +1,5 @@
 body {
+  background: #ebf1f5;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +11,27 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.bp3-input {
+  line-height: 1.5 !important;
+}
+
+#app {
+  max-width: 600px;
+  margin: 16px auto;
+  padding: 8px;
+}
+
+#app > button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+#name-list {
+  margin-top: 8px;
+}
+
+#name-list > * {
+  margin-bottom: 8px;
 }

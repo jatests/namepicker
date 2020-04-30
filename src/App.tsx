@@ -1,14 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, FormEvent } from 'react'
+import {
+  Button,
+  Card,
+  Alert,
+  Dialog,
+  Classes,
+  Elevation,
+} from '@blueprintjs/core'
 
 const TEST_NAMES = ['Alice', 'Bob', 'Carol']
 
 function App() {
   const [names, setNames] = useState<string[]>(TEST_NAMES)
+  const [newName, setNewName] = useState<string>('')
   const [lastPickedName, setLastPickedName] = useState<string>()
+  const [randomNameAlertIsOpen, setRandomNameAlertIsOpen] = useState(false)
+  const [addNewNameDialogIsOpen, setAddNewNameDialogIsOpen] = useState(false)
 
   function addNewName() {
-    const newName = prompt('Name to add:')
-    if (newName) setNames([...names, newName])
+    setAddNewNameDialogIsOpen(true)
+  }
+
+  function closeAddNewNameDialog() {
+    setNewName('')
+    setAddNewNameDialogIsOpen(false)
+  }
+
+  function finishAddingNewName(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setNames([...names, newName])
+    closeAddNewNameDialog()
   }
 
   function removeName(index: number) {
@@ -21,24 +42,72 @@ function App() {
       pickedName = names[Math.floor(Math.random() * names.length)]
     } while (pickedName === lastPickedName)
 
-    alert(`Picked name: ${pickedName}`)
     setLastPickedName(pickedName)
+    setRandomNameAlertIsOpen(true)
   }
 
   return (
-    <>
-      <button onClick={addNewName}>Add new name</button>
-      <button onClick={pickRandomName} disabled={names.length < 2}>
-        Pick random name
-      </button>
+    <div id="app">
+      <Alert
+        isOpen={randomNameAlertIsOpen}
+        onClose={() => setRandomNameAlertIsOpen(false)}
+        canEscapeKeyCancel
+        canOutsideClickCancel
+      >
+        <p>Picked name:</p>
+        <h2 className={Classes.HEADING}>{lastPickedName}</h2>
+      </Alert>
 
-      {names.map((name, index) => (
-        <div>
-          <button onClick={() => removeName(index)}>Remove</button>
-          {name}
-        </div>
-      ))}
-    </>
+      <Dialog
+        title="Add new name"
+        isOpen={addNewNameDialogIsOpen}
+        onClose={closeAddNewNameDialog}
+        style={{ width: 320 }}
+      >
+        <form onSubmit={finishAddingNewName}>
+          <div className={Classes.DIALOG_BODY}>
+            <p>
+              <strong>Name to add:</strong>
+            </p>
+            <input
+              type="text"
+              className={[Classes.INPUT, Classes.LARGE].join(' ')}
+              style={{ width: '100%' }}
+              autoFocus
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+            />
+          </div>
+          <div className={Classes.DIALOG_FOOTER}>
+            <div className={Classes.DIALOG_FOOTER_ACTIONS}>
+              <Button intent="primary" type="submit">
+                Add
+              </Button>
+            </div>
+          </div>
+        </form>
+      </Dialog>
+
+      <Button icon="plus" onClick={addNewName}>
+        Add new name
+      </Button>
+      <Button
+        icon="random"
+        onClick={pickRandomName}
+        disabled={names.length < 2}
+      >
+        Pick random name
+      </Button>
+
+      <div id="name-list">
+        {names.map((name, index) => (
+          <Card elevation={Elevation.TWO}>
+            <h5 className={Classes.HEADING}>{name}</h5>
+            <Button onClick={() => removeName(index)}>Remove</Button>
+          </Card>
+        ))}
+      </div>
+    </div>
   )
 }
 
