@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+
+const TEST_NAMES = ['Alice', 'Bob', 'Carol']
 
 function App() {
+  const [names, setNames] = useState<string[]>(TEST_NAMES)
+  const [lastPickedName, setLastPickedName] = useState<string>()
+
+  function addNewName() {
+    const newName = prompt('Name to add:')
+    if (newName) setNames([...names, newName])
+  }
+
+  function removeName(index: number) {
+    setNames(names.filter((_, i) => i !== index))
+  }
+
+  function pickRandomName() {
+    let pickedName
+    do {
+      pickedName = names[Math.floor(Math.random() * names.length)]
+    } while (pickedName === lastPickedName)
+
+    alert(`Picked name: ${pickedName}`)
+    setLastPickedName(pickedName)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <button onClick={addNewName}>Add new name</button>
+      <button onClick={pickRandomName} disabled={names.length < 2}>
+        Pick random name
+      </button>
+
+      {names.map((name, index) => (
+        <div>
+          <button onClick={() => removeName(index)}>Remove</button>
+          {name}
+        </div>
+      ))}
+    </>
+  )
 }
 
-export default App;
+export default App
