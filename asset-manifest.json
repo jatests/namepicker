@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/namepicker/static/css/main.35b921ed.chunk.css",
+    "main.js": "/namepicker/static/js/main.7dec7ed2.chunk.js",
+    "main.js.map": "/namepicker/static/js/main.7dec7ed2.chunk.js.map",
+    "runtime-main.js": "/namepicker/static/js/runtime-main.140cb9e2.js",
+    "runtime-main.js.map": "/namepicker/static/js/runtime-main.140cb9e2.js.map",
+    "static/css/2.095da0fb.chunk.css": "/namepicker/static/css/2.095da0fb.chunk.css",
+    "static/js/2.24168453.chunk.js": "/namepicker/static/js/2.24168453.chunk.js",
+    "static/js/2.24168453.chunk.js.map": "/namepicker/static/js/2.24168453.chunk.js.map",
+    "index.html": "/namepicker/index.html",
+    "precache-manifest.700ce21e0241bc0ba27d07b6c182b5b6.js": "/namepicker/precache-manifest.700ce21e0241bc0ba27d07b6c182b5b6.js",
+    "service-worker.js": "/namepicker/service-worker.js",
+    "static/css/2.095da0fb.chunk.css.map": "/namepicker/static/css/2.095da0fb.chunk.css.map",
+    "static/css/main.35b921ed.chunk.css.map": "/namepicker/static/css/main.35b921ed.chunk.css.map",
+    "static/js/2.24168453.chunk.js.LICENSE.txt": "/namepicker/static/js/2.24168453.chunk.js.LICENSE.txt",
+    "static/media/blueprint-icons.css": "/namepicker/static/media/icons-20.cef8cdbb.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.140cb9e2.js",
+    "static/css/2.095da0fb.chunk.css",
+    "static/js/2.24168453.chunk.js",
+    "static/css/main.35b921ed.chunk.css",
+    "static/js/main.7dec7ed2.chunk.js"
+  ]
+}
